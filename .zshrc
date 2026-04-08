@@ -11,7 +11,9 @@ ZSH_THEME=""
 # OMZ BEHAVIOR
 # ==============================================================================
 
-ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="false"
+unsetopt CORRECT
+unsetopt CORRECT_ALL
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="yyyy-mm-dd"
 DISABLE_UNTRACKED_FILES_DIRTY="true"   # faster git status in large repos
@@ -89,20 +91,12 @@ export LANG=en_US.UTF-8
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
 # ==============================================================================
-# NVM  (lazy-loaded to keep startup fast)
+# NVM  
 # ==============================================================================
 
 export NVM_DIR="$HOME/.nvm"
-
-nvm() {
-  unset -f nvm node npm npx
-  [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
-  [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
-  nvm "$@"
-}
-node() { nvm; node "$@"; }
-npm()  { nvm; npm  "$@"; }
-npx()  { nvm; npx  "$@"; }
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+export NVM_DIR="$HOME/.nvm"
 
 # ==============================================================================
 # FZF
